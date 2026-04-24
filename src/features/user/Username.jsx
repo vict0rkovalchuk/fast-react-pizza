@@ -1,7 +1,14 @@
+import { useSelector } from "react-redux"
+import { getUsername } from "./userSlice";
+
 export default function Username() {
+  const username = useSelector(getUsername);
+
+  if (!username) return null;
+
   return (
     <p className="text-sm font-semibold hidden md:block">
-      Vitya
+      {username}
     </p>
   )
 }

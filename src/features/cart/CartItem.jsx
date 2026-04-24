@@ -1,20 +1,32 @@
+import { motion } from "motion/react";
+
 import { formatCurrency } from "../../utils/helpers";
 
-import Button from "../../ui/Button";
+import DeleteItem from "./DeleteItem";
 
-function CartItem({ item }) {
+function CartItem({ item, index }) {
   const { pizzaId, name, quantity, totalPrice } = item;
 
   return (
-    <li className="py-3 md:flex sm:items-center sm:justify-between">
+    <motion.li
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -50 }}
+      transition={{ 
+        duration: 0.3,
+        delay: index * 0.05 
+      }}
+      className="py-3 md:flex sm:items-center sm:justify-between"
+    >
       <p className="mb-1 sm:mb-0">
         {quantity}&times; {name}
       </p>
       <div className="flex justify-between items-center sm:gap-6">
         <p className="text-sm font-bold">{formatCurrency(totalPrice)}</p>
-        <Button type='small'>Delete</Button>
+
+        <DeleteItem pizzaId={pizzaId}/>
       </div>
-    </li>
+    </motion.li>
   );
 }
 
