@@ -1,8 +1,8 @@
-export function formatCurrency(value) {
+export function formatCurrency(value, isRounded = false) {
   return new Intl.NumberFormat("en", {
     style: "currency",
     currency: "EUR",
-  }).format(value);
+  }).format(isRounded ? Math.round(value) : value);
 }
 
 export function formatDate(dateStr) {
