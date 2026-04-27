@@ -3,13 +3,13 @@ import Button from '../../ui/Button';
 import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, getCartItems } from './cartSlice';
-import { getUsername } from '../user/userSlice';
+import { getUser } from '../user/userSlice';
 import EmptyCart from './EmptyCart';
 import { AnimatePresence } from 'motion/react';
 
 function Cart() {
   const dispatch = useDispatch();
-  const username = useSelector(getUsername);
+  const { username } = useSelector(getUser);
   const cart = useSelector(getCartItems);
 
   function handleClearCart() {
